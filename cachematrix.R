@@ -1,7 +1,6 @@
-## Written following the makeVector
-## Our first function will be similar to makeVector
-## it will set up i as a NULL value.
-## This will later store the inverse of our matrix.
+
+## Our general functions will store a matrix in a cached environment.
+## Within that matrix x will be the original and i the inverse matrix.
 
 ## Write a short comment describing this function
 
@@ -40,3 +39,14 @@ cacheSolve <- function(x, ...) {
   i
         ## Return a matrix that is the inverse of 'x'
 }
+
+## A test matrix.  With the two functions used to solve.
+z <- c(1,-2,1,1)
+m1 <- matrix(z,nrow=2,ncol=2)
+
+aMatrix <- makeCacheMatrix(m1)
+aMatrix$get() # check that it stores it
+cacheSolve(aMatrix) # Check that it returns an inverse
+z1 <- cacheSolve(aMatrix) # Check that it will not re-compute if uneccesary
+z2 <- solve(m1) # compare the two matrixes
+z1==z2 #quick check
